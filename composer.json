@@ -1,11 +1,16 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "petermeijer/vue-starter-kit",
+    "name": "petermeijer/laravel-vue-starter-kit",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A modern, robust starter kit for Laravel 12 and Vue 3, featuring Inertia.js 2.0, TypeScript, Tailwind CSS 4, and shadcn-vue.",
     "keywords": [
         "laravel",
-        "framework"
+        "vue",
+        "inertiajs",
+        "typescript",
+        "tailwind-css",
+        "shadcn-ui",
+        "starter-kit"
     ],
     "license": "MIT",
     "require": {

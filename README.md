@@ -1,25 +1,74 @@
 # Laravel + Vue Starter Kit
 
-## Introduction
+A modern, robust starting point for building Laravel 12 applications with a Vue 3 frontend using [Inertia.js 2.0](https://inertiajs.com).
 
-Our Vue starter kit provides a robust, modern starting point for building Laravel applications with a Vue frontend using [Inertia](https://inertiajs.com).
+## ✨ Features
 
-Inertia allows you to build modern, single-page Vue applications using classic server-side routing and controllers. This lets you enjoy the frontend power of Vue combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+- **Framework**: [Laravel 12](https://laravel.com) & [PHP 8.4+](https://php.net)
+- **Frontend**: [Vue 3](https://vuejs.org) (Composition API) with [TypeScript](https://www.typescriptlang.org)
+- **Routing**: [Inertia.js 2.0](https://inertiajs.com) for a seamless SPA experience
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com) with [shadcn-vue](https://www.shadcn-vue.com) components
+- **Authentication**: Powered by [Laravel Fortify](https://laravel.com/docs/fortify)
+- **Icons**: [Lucide Vue Next](https://lucide.dev)
+- **Tooling**:
+    - [Vite](https://vitejs.dev) for fast development
+    - [Pest](https://pestphp.com) for elegant testing
+    - [Laravel Pint](https://laravel.com/docs/pint) for code style
+    - [Larastan](https://github.com/larastan/larastan) for static analysis
+    - [Pail](https://github.com/laravel/pail) for terminal logging
 
-This Vue starter kit utilizes Vue 3 and the Composition API, TypeScript, Tailwind, and the [shadcn-vue](https://www.shadcn-vue.com) component library.
+## 🚀 Quick Start
 
-## Official Documentation
+Get your project up and running in minutes.
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+### 1. Installation
 
-## Contributing
+Clone the repository and run the setup script:
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer setup
+```
 
-## Code of Conduct
+The `setup` script will:
+- Install PHP and Node dependencies
+- Create your `.env` file (if it doesn't exist)
+- Generate an application key
+- Run database migrations
+- Build frontend assets
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Development
 
-## License
+Start the development server, queue listener, logs, and Vite watcher with a single command:
 
-The Laravel + Vue starter kit is open-sourced software licensed under the MIT license.
+```bash
+composer dev
+```
+
+Alternatively, if you need Server-Side Rendering (SSR):
+
+```bash
+composer dev:ssr
+```
+
+## 🛠 Commands
+
+| Command | Description |
+| --- | --- |
+| `composer setup` | Full project installation and setup |
+| `composer dev` | Start development environment (Server, Queue, Logs, Vite) |
+| `composer test` | Run tests and check code style |
+| `composer lint` | Fix code style with Laravel Pint |
+| `npm run build` | Build production assets |
+| `npm run types:check` | Run Vue-TSC type checking |
+
+## 🧪 Testing & Quality
+
+Maintain high code quality with built-in tools:
+
+- **Tests**: `composer test`
+- **Static Analysis**: `./vendor/bin/phpstan`
+- **Linting**: `composer lint`
+
+## 📄 License
+
+The Laravel + Vue starter kit is open-sourced software licensed under the [MIT license](LICENSE).
