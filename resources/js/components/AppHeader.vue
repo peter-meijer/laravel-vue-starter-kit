@@ -107,13 +107,9 @@ const rightNavItems: NavItem[] = [
                                     <Link
                                         v-for="item in mainNavItems"
                                         :key="item.title"
-                                        :href="item.href"
+                                        :href="item.href ?? '#'"
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
-                                        :class="
-                                            whenCurrentUrl(
-                                                item.href,
-                                                activeItemStyles,
-                                            )
+                                        :class="item.href ? whenCurrentUrl(item.href, activeItemStyles) : ''
                                         "
                                     >
                                         <component
@@ -128,7 +124,7 @@ const rightNavItems: NavItem[] = [
                                     <a
                                         v-for="item in rightNavItems"
                                         :key="item.title"
-                                        :href="toUrl(item.href)"
+                                        :href="item.href ? toUrl(item.href) : '#'"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
@@ -164,13 +160,10 @@ const rightNavItems: NavItem[] = [
                                 <Link
                                     :class="[
                                         navigationMenuTriggerStyle(),
-                                        whenCurrentUrl(
-                                            item.href,
-                                            activeItemStyles,
-                                        ),
+                                        item.href ? whenCurrentUrl(item.href, activeItemStyles) : '#',
                                         'h-9 cursor-pointer px-3',
                                     ]"
-                                    :href="item.href"
+                                    :href="item.href ?? '#'"
                                 >
                                     <component
                                         v-if="item.icon"
@@ -180,7 +173,7 @@ const rightNavItems: NavItem[] = [
                                     {{ item.title }}
                                 </Link>
                                 <div
-                                    v-if="isCurrentUrl(item.href)"
+                                    v-if="item.href && isCurrentUrl(item.href)"
                                     class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
                                 ></div>
                             </NavigationMenuItem>
@@ -215,13 +208,11 @@ const rightNavItems: NavItem[] = [
                                                 class="group h-9 w-9 cursor-pointer"
                                             >
                                                 <a
-                                                    :href="toUrl(item.href)"
+                                                    :href="item.href ? toUrl(item.href) : '#'"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
-                                                    <span class="sr-only">{{
-                                                        item.title
-                                                    }}</span>
+                                                    <span class="sr-only">{{ item.title }}</span>
                                                     <component
                                                         :is="item.icon"
                                                         class="size-5 opacity-80 group-hover:opacity-100"
