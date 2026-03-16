@@ -22,5 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
         ->middleware('throttle:6,1')
         ->name('user-password.update');
 
-    Route::inertia('settings/appearance', 'settings/Appearance')->name('appearance.edit');
+    /** @var Illuminate\Routing\Route $route */
+    $route = Route::inertia('settings/appearance', 'settings/Appearance');
+    $route->name('appearance.edit');
 });

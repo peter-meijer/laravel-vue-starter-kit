@@ -109,7 +109,13 @@ const rightNavItems: NavItem[] = [
                                         :key="item.title"
                                         :href="item.href ?? '#'"
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent"
-                                        :class="item.href ? whenCurrentUrl(item.href, activeItemStyles) : ''
+                                        :class="
+                                            item.href
+                                                ? whenCurrentUrl(
+                                                      item.href,
+                                                      activeItemStyles,
+                                                  )
+                                                : ''
                                         "
                                     >
                                         <component
@@ -124,7 +130,9 @@ const rightNavItems: NavItem[] = [
                                     <a
                                         v-for="item in rightNavItems"
                                         :key="item.title"
-                                        :href="item.href ? toUrl(item.href) : '#'"
+                                        :href="
+                                            item.href ? toUrl(item.href) : '#'
+                                        "
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="flex items-center space-x-2 text-sm font-medium"
@@ -160,7 +168,12 @@ const rightNavItems: NavItem[] = [
                                 <Link
                                     :class="[
                                         navigationMenuTriggerStyle(),
-                                        item.href ? whenCurrentUrl(item.href, activeItemStyles) : '#',
+                                        item.href
+                                            ? whenCurrentUrl(
+                                                  item.href,
+                                                  activeItemStyles,
+                                              )
+                                            : '#',
                                         'h-9 cursor-pointer px-3',
                                     ]"
                                     :href="item.href ?? '#'"
@@ -208,11 +221,17 @@ const rightNavItems: NavItem[] = [
                                                 class="group h-9 w-9 cursor-pointer"
                                             >
                                                 <a
-                                                    :href="item.href ? toUrl(item.href) : '#'"
+                                                    :href="
+                                                        item.href
+                                                            ? toUrl(item.href)
+                                                            : '#'
+                                                    "
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
-                                                    <span class="sr-only">{{ item.title }}</span>
+                                                    <span class="sr-only">{{
+                                                        item.title
+                                                    }}</span>
                                                     <component
                                                         :is="item.icon"
                                                         class="size-5 opacity-80 group-hover:opacity-100"

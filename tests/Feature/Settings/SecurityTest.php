@@ -10,7 +10,7 @@ use Laravel\Fortify\Features;
 
 uses(RefreshDatabase::class);
 
-test('security page is displayed', function () {
+test('security page is displayed', function (): void {
     $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
 
     Features::twoFactorAuthentication([
@@ -30,7 +30,7 @@ test('security page is displayed', function () {
         );
 });
 
-test('security page requires password confirmation when enabled', function () {
+test('security page requires password confirmation when enabled', function (): void {
     $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
 
     $user = User::factory()->create();
@@ -46,7 +46,7 @@ test('security page requires password confirmation when enabled', function () {
     $response->assertRedirect(route('password.confirm'));
 });
 
-test('security page does not require password confirmation when disabled', function () {
+test('security page does not require password confirmation when disabled', function (): void {
     $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
 
     $user = User::factory()->create();
@@ -64,7 +64,7 @@ test('security page does not require password confirmation when disabled', funct
         );
 });
 
-test('security page renders without two factor when feature is disabled', function () {
+test('security page renders without two factor when feature is disabled', function (): void {
     $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
 
     config(['fortify.features' => []]);
@@ -82,7 +82,7 @@ test('security page renders without two factor when feature is disabled', functi
         );
 });
 
-test('password can be updated', function () {
+test('password can be updated', function (): void {
     $user = User::factory()->create();
 
     $response = $this
@@ -101,7 +101,7 @@ test('password can be updated', function () {
     expect(Hash::check('new-password', $user->refresh()->password))->toBeTrue();
 });
 
-test('correct password must be provided to update password', function () {
+test('correct password must be provided to update password', function (): void {
     $user = User::factory()->create();
 
     $response = $this
