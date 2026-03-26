@@ -1,12 +1,12 @@
 # Laravel + Vue Starter Kit
 
-A modern, robust starting point for building Laravel 13 applications with a Vue 3 frontend using [Inertia.js 2.0](https://inertiajs.com).
+A modern, robust starting point for building Laravel 13 applications with a Vue 3 frontend using [Inertia.js 3.0](https://inertiajs.com).
 
 ## ✨ Features
 
 - **Framework**: [Laravel 13](https://laravel.com) & [PHP 8.4+](https://php.net)
 - **Frontend**: [Vue 3](https://vuejs.org) (Composition API) with [TypeScript](https://www.typescriptlang.org)
-- **Routing**: [Inertia.js 2.0](https://inertiajs.com) for a seamless SPA experience
+- **Routing**: [Inertia.js 3.0](https://inertiajs.com) for a seamless SPA experience
 - **Styling**: [Tailwind CSS 4](https://tailwindcss.com) with [shadcn-vue](https://www.shadcn-vue.com) components
 - **Authentication**: Powered by [Laravel Fortify](https://laravel.com/docs/fortify)
 - **Icons**: [Lucide Vue Next](https://lucide.dev)
