@@ -121,7 +121,7 @@ onUnmounted(() => clearTwoFactorAuthData());
                 >
                     <p
                         v-show="recentlySuccessful"
-                        class="text-sm text-neutral-600"
+                        class="text-sm text-zinc-600"
                     >
                         Saved.
                     </p>

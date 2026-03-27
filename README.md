@@ -30,6 +30,7 @@ composer setup
 ```
 
 The `setup` script will:
+
 - Install PHP and Node dependencies
 - Create your `.env` file (if it doesn't exist)
 - Generate an application key
