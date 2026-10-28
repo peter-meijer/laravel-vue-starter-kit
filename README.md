@@ -30,6 +30,7 @@ composer setup
 ```
 
 The `setup` script will:
+
 - Install PHP and Node dependencies
 - Create your `.env` file (if it doesn't exist)
 - Generate an application key
@@ -44,22 +45,16 @@ Start the development server, queue listener, logs, and Vite watcher with a sing
 composer dev
 ```
 
-Alternatively, if you need Server-Side Rendering (SSR):
-
-```bash
-composer dev:ssr
-```
-
 ## 🛠 Commands
 
-| Command | Description |
-| --- | --- |
-| `composer setup` | Full project installation and setup |
-| `composer dev` | Start development environment (Server, Queue, Logs, Vite) |
-| `composer test` | Run tests and check code style |
-| `composer lint` | Fix code style with Laravel Pint |
-| `npm run build` | Build production assets |
-| `npm run types:check` | Run Vue-TSC type checking |
+| Command               | Description                                               |
+| --------------------- | --------------------------------------------------------- |
+| `composer setup`      | Full project installation and setup                       |
+| `composer dev`        | Start development environment (Server, Queue, Logs, Vite) |
+| `composer test`       | Run tests and check code style                            |
+| `composer lint`       | Fix code style with Laravel Pint                          |
+| `npm run build`       | Build production assets                                   |
+| `npm run types:check` | Run Vue-TSC type checking                                 |
 
 ## 🧪 Testing & Quality
 

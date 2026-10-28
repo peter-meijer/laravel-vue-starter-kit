@@ -12,7 +12,7 @@ use Laravel\Fortify\Features;
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    $this->skipUnlessFortifyFeature(Features::emailVerification());
+    $this->skipUnlessFortifyHas(Features::emailVerification());
 });
 
 test('email verification screen can be rendered', function (): void {
@@ -21,6 +21,14 @@ test('email verification screen can be rendered', function (): void {
     $response = $this->actingAs($user)->get(route('verification.notice'));
 
     $response->assertOk();
+});
+
+test('unverified users are redirected to the email verification prompt', function (): void {
+    $user = User::factory()->unverified()->create();
+
+    $response = $this->actingAs($user)->get(route('appearance.edit'));
+
+    $response->assertRedirect(route('verification.notice'));
 });
 
 test('email can be verified', function (): void {

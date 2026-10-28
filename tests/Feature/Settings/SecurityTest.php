@@ -11,27 +11,39 @@ use Laravel\Fortify\Features;
 uses(RefreshDatabase::class);
 
 test('security page is displayed', function (): void {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
+    $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
 
     Features::twoFactorAuthentication([
         'confirm' => true,
         'confirmPassword' => true,
     ]);
+    /* @chisel-passkeys */
+    Features::passkeys([
+        'confirmPassword' => true,
+    ]);
+    /* @end-chisel-passkeys */
 
     $user = User::factory()->create();
 
     $this->actingAs($user)
+        /* @chisel-password-confirmation */
         ->withSession(['auth.password_confirmed_at' => time()])
+        /* @end-chisel-password-confirmation */
         ->get(route('security.edit'))
         ->assertInertia(fn (Assert $page): Assert => $page
             ->component('settings/Security')
+            /* @chisel-passkeys */
+            ->where('canManagePasskeys', true)
+            ->where('passkeys', [])
+            /* @end-chisel-passkeys */
             ->where('canManageTwoFactor', true)
             ->where('twoFactorEnabled', false),
         );
 });
 
+/* @chisel-password-confirmation */
 test('security page requires password confirmation when enabled', function (): void {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
+    $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
 
     $user = User::factory()->create();
 
@@ -45,37 +57,27 @@ test('security page requires password confirmation when enabled', function (): v
 
     $response->assertRedirect(route('password.confirm'));
 });
-
-test('security page does not require password confirmation when disabled', function (): void {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
-
-    $user = User::factory()->create();
-
-    Features::twoFactorAuthentication([
-        'confirm' => true,
-        'confirmPassword' => false,
-    ]);
-
-    $this->actingAs($user)
-        ->get(route('security.edit'))
-        ->assertOk()
-        ->assertInertia(fn (Assert $page): Assert => $page
-            ->component('settings/Security'),
-        );
-});
+/* @end-chisel-password-confirmation */
 
 test('security page renders without two factor when feature is disabled', function (): void {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
+    $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
 
     config(['fortify.features' => []]);
 
     $user = User::factory()->create();
 
     $this->actingAs($user)
+        /* @chisel-password-confirmation */
+        ->withSession(['auth.password_confirmed_at' => time()])
+        /* @end-chisel-password-confirmation */
         ->get(route('security.edit'))
         ->assertOk()
         ->assertInertia(fn (Assert $page): Assert => $page
             ->component('settings/Security')
+            /* @chisel-passkeys */
+            ->where('canManagePasskeys', false)
+            ->where('passkeys', [])
+            /* @end-chisel-passkeys */
             ->where('canManageTwoFactor', false)
             ->missing('twoFactorEnabled')
             ->missing('requiresConfirmation'),

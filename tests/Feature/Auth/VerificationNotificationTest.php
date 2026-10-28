@@ -11,7 +11,7 @@ use Laravel\Fortify\Features;
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    $this->skipUnlessFortifyFeature(Features::emailVerification());
+    $this->skipUnlessFortifyHas(Features::emailVerification());
 });
 
 test('sends verification notification', function (): void {
