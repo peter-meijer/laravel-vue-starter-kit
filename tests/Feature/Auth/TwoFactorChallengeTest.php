@@ -10,7 +10,7 @@ use Laravel\Fortify\Features;
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    $this->skipUnlessFortifyFeature(Features::twoFactorAuthentication());
+    $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
 });
 
 test('two factor challenge redirects to login when not authenticated', function (): void {
@@ -25,13 +25,7 @@ test('two factor challenge can be rendered', function (): void {
         'confirmPassword' => true,
     ]);
 
-    $user = User::factory()->create();
-
-    $user->forceFill([
-        'two_factor_secret' => encrypt('test-secret'),
-        'two_factor_recovery_codes' => encrypt(json_encode(['code1', 'code2'])),
-        'two_factor_confirmed_at' => now(),
-    ])->save();
+    $user = User::factory()->withTwoFactor()->create();
 
     $this->post(route('login'), [
         'email' => $user->email,

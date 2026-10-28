@@ -8,7 +8,7 @@ use Laravel\Fortify\Features;
 uses(RefreshDatabase::class);
 
 beforeEach(function (): void {
-    $this->skipUnlessFortifyFeature(Features::registration());
+    $this->skipUnlessFortifyHas(Features::registration());
 });
 
 test('registration screen can be rendered', function (): void {

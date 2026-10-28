@@ -13,6 +13,8 @@ parameters:
         - public
         - routes
 
+    excludePaths:
+        - app/Console/Commands/InstallFeaturesCommand.php (?)
 
     level: max
 

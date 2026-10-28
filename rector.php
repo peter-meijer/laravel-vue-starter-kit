@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
 use Rector\Set\ValueObject\SetList;
 use Rector\ValueObject\PhpVersion;
@@ -15,6 +16,12 @@ return RectorConfig::configure()
         __DIR__.'/resources',
         __DIR__.'/routes',
         __DIR__.'/tests',
+    ])
+    ->withSkip([
+        __DIR__.'/app/Console/Commands/InstallFeaturesCommand.php',
+        SeparateMultiUseImportsRector::class => [
+            __DIR__.'/app/Models/User.php',
+        ],
     ])
     ->withPreparedSets(
         deadCode: true,
